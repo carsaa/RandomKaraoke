@@ -1,0 +1,36 @@
+﻿@using RandomKaraoke.Models.VM
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Songs";
+}
+
+<head>
+    @*<script src="Scripts/jquery-3.1.1.min.js"></script>*@
+    <script src="~/Script/myScript.js"></script>
+</head>
+
+<div id="BStable">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th onclick="SortTable(0)">Artist</th>
+                <th onclick="SortTable(1)">Song</th>
+                <th onclick="SortTable(2)">Disc</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SongsListVM item in Model)
+            {
+                <tr>
+                    <td>@item.Artist</td>
+                    <td>@item.Title</td>
+                    <td>@item.Disc</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

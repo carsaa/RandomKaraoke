@@ -1,0 +1,19 @@
+﻿@using RandomKaraoke.Models.VM
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers 
+@using RandomKaraoke.Models
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Players";
+}
+
+<div id="table" class="table">
+    <div class="rows">
+
+        @foreach (Player item in ViewBag.Players)
+        {
+            <div class="columns">@item.Name</div>
+        }
+
+    </div>
+</div>
