@@ -27,10 +27,10 @@ namespace RandomKaraoke.Controllers
 
         //Vad är min IFormCollection egentligen?
         [HttpPost]
-        public IActionResult Index(IFormCollection form)
+        public IActionResult Index(IFormCollection form, string id)
         {
             //Sätter vymodellen till den vymodell vi får som resultat av RandomPlayer-metoden
-            SongsIndexVM viewModel = DataManager.RandomPlayer(context);
+            SongsIndexVM viewModel = DataManager.RandomPlayer(context, id);
 
             return View(viewModel);
         }

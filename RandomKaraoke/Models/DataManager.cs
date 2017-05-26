@@ -41,7 +41,7 @@ namespace RandomKaraoke.Models
 
         //Spara spelarna i en session genom en stringarray och ta bort DataManager?
 
-        public static SongsIndexVM RandomPlayer(SongDBContext context)
+        public static SongsIndexVM RandomPlayer(SongDBContext context, string id)
         {
             //Slumpar fram en siffra och väljer spelare på det indexet
             Random random = new Random();
@@ -62,13 +62,15 @@ namespace RandomKaraoke.Models
             //Lägg till skiva här? Beroende på vad som valts i vyn.. 
             //Hämtar låt från Song som sorterats på GUID (alltså slumpmässigt) och valt första träffen
             var rndmSong = context.Song
+                .Where(s => s.Disc.Replace(" ", "").ToLower() == id.Replace(" ", "").ToLower())
                 .OrderBy(s => Guid.NewGuid())
-                .Select(s => new { Artist = s.Artist, Title = s.Title })
+                .Select(s => new { Artist = s.Artist, Title = s.Title, Disc = s.Disc })
                 .First();
 
             //Sätter vymodellens properties till de framslumpade resultaten
             viewModel.FirstPlayer = firstPlayer.Name;
             viewModel.SecondPlayer = secondPlayer.Name;
+            viewModel.Disc = rndmSong.Disc;
             viewModel.Artist = rndmSong.Artist;
             viewModel.Title = rndmSong.Title;
 

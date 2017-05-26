@@ -15,35 +15,43 @@
 </head>
 <body>
     @*<div class="dropdown">
-        <button onclick="toggleDropDown()" class="dropbtn">Välj skiva</button>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#">Alla skivor</a>
-            <a href="#">Lips</a>
-            <a href="#">Number One Hits</a>
-        </div>
-    </div>*@
+            <button onclick="toggleDropDown()" class="dropbtn">Välj skiva</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Alla skivor</a>
+                <a href="#">Lips</a>
+                <a href="#">Number One Hits</a>
+            </div>
+        </div>*@
 
     @*<div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Välj skiva
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a href="#">Alla skivor</a></li>
-            <li><a href="#">Lips</a></li>
-            <li><a href="#">Number One Hits</a></li>
-        </ul>
-    </div>*@
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Välj skiva
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">Alla skivor</a></li>
+                <li><a href="#">Lips</a></li>
+                <li><a href="#">Number One Hits</a></li>
+            </ul>
+        </div>*@
 
     <div class="row">
         <div class="col-sm-4"></div>
-        
+
         <div class="col-sm-4">
-            <form asp-action="Index">
-                <input type="submit" value="Play" class="btn btn-default btn-lg center-block" />
+            <form asp-action="Index" id="playForm">
+                @if (Model != null)
+                {
+                    <input type="text" hidden="hidden" name="id" value="@Model.Disc" id="cd-id" />
+                }
+                else
+                {
+                    <input type="text" hidden="hidden" name="id" value="Lips" id="cd-id" />
+                }
+                <input type="submit" id="playButton" value="Play" class="btn btn-default btn-lg center-block" />
             </form>
         </div>
-        
+
         <div class="col-sm-4">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -56,8 +64,16 @@
                     <li><a href="#">Number One Hits</a></li>
                 </ul>
                 <select id="cdSelect">
-                    <option value="0">Lips</option>
-                    <option value="1">Number One Hits</option>
+                    @if (Model != null && Model.Disc.ToLower() == "Number One Hits".ToLower())
+                    {
+                        <option value="0">Lips</option>
+                        <option value="1" selected="selected">Number One Hits</option>
+                    }
+                    else
+                    {
+                        <option value="0">Lips</option>
+                        <option value="1">Number One Hits</option>
+                    }
                 </select>
             </div>
 
@@ -67,8 +83,8 @@
 
 
     @*<form asp-action="Index">
-        <input type="submit" value="Play" class="btn btn-default btn-lg center-block" />
-    </form>*@
+            <input type="submit" value="Play" class="btn btn-default btn-lg center-block" />
+        </form>*@
 
     <div class="row">
         <div class="col-sm-4"></div>
@@ -98,35 +114,36 @@
 
 
     @*@if (Model != null)
-    {
-        <br />
+        {
             <br />
+                <br />
 
-            <div>
-                <b> @Model.PlayerName</b> ska sjunga <i>@Model.Title</i> av @Model.Artist
-            </div>
+                <div>
+                    <b> @Model.PlayerName</b> ska sjunga <i>@Model.Title</i> av @Model.Artist
+                </div>
 
-        //Varför hade jag dessa?
-        <input type="hidden" id="artist" value="@Model.Artist" />
-            <input type="hidden" id="songtitle" value="@Model.Title" />
+            //Varför hade jag dessa?
+            <input type="hidden" id="artist" value="@Model.Artist" />
+                <input type="hidden" id="songtitle" value="@Model.Title" />
 
-            <br />
-            <br />
-    }
+                <br />
+                <br />
+        }
 
-    <div id="image" style="display:none">
-        <img src="" id="imgfile" class="img-rounded" width="250" height="250">
-    </div>
+        <div id="image" style="display:none">
+            <img src="" id="imgfile" class="img-rounded" width="250" height="250">
+        </div>
 
-    <div id="audio" style="display:none">
-        <audio src="" id="audiofile" controls autoplay loop></audio>
-    </div>*@
+        <div id="audio" style="display:none">
+            <audio src="" id="audiofile" controls autoplay loop></audio>
+        </div>*@
 
     <script>
         $(document).ready(function () {
             $('#cdSelect').change(function () {
-                
-
+                var skillsSelect = document.getElementById("cdSelect");
+                var selectedText = skillsSelect.options[skillsSelect.selectedIndex].text.replace(/ /g, '');
+                $('#cd-id').val(selectedText);
             });
 
 
