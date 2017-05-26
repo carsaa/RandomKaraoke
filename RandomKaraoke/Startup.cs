@@ -17,9 +17,9 @@ namespace RandomKaraoke
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = @"Server=tcp:carsaa.database.windows.net,1433;Initial Catalog=RandomKaraoke;Persist Security Info=False;User ID=carsaa;Password=Singsingsing00;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             //var connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LipsDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+            var connString = @"Server=tcp:carsaa.database.windows.net,1433;Initial Catalog=RandomKaraoke;Persist Security Info=False;User ID=carsaa;Password=Singsingsing00;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             services.AddDbContext<SongDBContext>(options => options.UseSqlServer(connString));
             services.AddMvc();
         }

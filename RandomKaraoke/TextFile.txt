@@ -1,0 +1,1 @@
+﻿Server=tcp:carsaa.database.windows.net,1433;Initial Catalog=RandomKaraoke;Persist Security Info=False;User ID={carsaa};Password={Singsingsing00};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
