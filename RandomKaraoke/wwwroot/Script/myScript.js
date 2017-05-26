@@ -60,4 +60,4 @@ function spotify() {
             //var audio = new Audio('https://p.scdn.co/mp3-preview/96038ec43852eb46dba2765bfa69199f478f84ea?cid=null');
         });
     }
-});
+};

@@ -55,6 +55,10 @@
                     <li><a href="#">Lips</a></li>
                     <li><a href="#">Number One Hits</a></li>
                 </ul>
+                <select id="cdSelect">
+                    <option value="0">Lips</option>
+                    <option value="1">Number One Hits</option>
+                </select>
             </div>
 
         </div>
@@ -120,6 +124,12 @@
 
     <script>
         $(document).ready(function () {
+            $('#cdSelect').change(function () {
+                
+
+            });
+
+
             var artist = $("#artist").val();
             var songtitle = $("#songtitle").val();
             var url = "https://api.spotify.com/v1/search?q=" + songtitle + "+" + artist + "&type=track&limit=1";
